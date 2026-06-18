@@ -1,0 +1,271 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: radial-gradient(circle at top left, rgba(255, 0, 153, 0.18), transparent 20%),
+                radial-gradient(circle at bottom right, rgba(0, 255, 255, 0.12), transparent 20%),
+                linear-gradient(135deg, #09090f 0%, #150725 40%, #120c22 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #ffffff;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* CONTENEDOR */
+.container {
+    background: radial-gradient(circle at top left, rgba(255, 0, 153, 0.16), #1e1e2d 70%);
+    padding: 32px;
+    border-radius: 24px;
+    width: 380px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 0, 153, 0.15);
+    border: 1px solid rgba(255, 0, 153, 0.45);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transform-style: preserve-3d;
+}
+
+.container:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 28px 50px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0, 255, 255, 0.2);
+}
+
+h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff0099;
+}
+
+h2 i, h3 i {
+    margin-right: 10px;
+}
+
+.stats {
+    text-align: center;
+    margin-bottom: 14px;
+    color: #8df4ff;
+}
+
+.stats strong {
+    color: #ffffff;
+}
+
+/* CAMPOS */
+.campo {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.campo.focused label {
+    color: #ff66cc;
+}
+
+label {
+    font-size: 14px;
+    color: #00ffff;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease;
+}
+
+label i {
+    margin-right: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #666;
+    margin-top: 5px;
+    background: #14141f;
+    color: #ffffff;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+
+input:focus {
+    border-color: #ff66cc;
+    outline: none;
+    box-shadow: 0 0 14px rgba(255, 102, 204, 0.35);
+    transform: translateY(-1px);
+}
+
+/* ERROR */
+.error {
+    color: #ff6f8b;
+    font-size: 12px;
+}
+
+/* ESTADOS */
+input.valido {
+    border-color: #00ff00;
+}
+
+input.errorInput {
+    border-color: #ff4444;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* BOTONES */
+button,
+.secondary {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+button {
+    background: linear-gradient(45deg, #ff0099, #ff66cc);
+}
+
+.secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e9d1ff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+button:hover,
+.secondary:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(255, 0, 153, 0.28);
+}
+
+button::after,
+.secondary::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 180px;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    pointer-events: none;
+}
+
+button:active::after,
+.secondary:active::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+button i,
+.secondary i {
+    margin-right: 8px;
+}
+
+/* MENSAJE EXITO */
+#exito {
+    color: #7bf87b;
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#exito i {
+    margin-right: 5px;
+}
+
+/* TABLA */
+.tabla {
+    margin-top: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #14141f;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+th, td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #242433;
+}
+
+th {
+    background: #ff0099;
+    color: white;
+    font-weight: 600;
+}
+
+td {
+    color: #d1d1d1;
+}
+
+tbody tr {
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+tbody tr:nth-child(odd) {
+    background: #14141f;
+}
+
+tbody tr:nth-child(even) {
+    background: #191926;
+}
+
+tbody tr:hover {
+    background: #262636;
+}
+
+.delete-row {
+    border: none;
+    background: rgba(255, 0, 153, 0.12);
+    color: #ff88cc;
+    padding: 8px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.delete-row:hover {
+    background: rgba(255, 0, 153, 0.22);
+    transform: translateX(2px);
+}
+
+.delete-row i {
+    margin: 0;
+}
+
+.added {
+    animation: pop 0.25s ease;
+}
+
+.remove {
+    animation: vanish 0.25s ease forwards;
+}
+
+@keyframes pop {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes vanish {
+    to { opacity: 0; transform: translateX(20px); }
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPW-207 | Lab 1.3 y 1.4 - Formulario de Registro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container py-5">
+        <header class="mb-5 text-center">
+            <h1 class="display-5 fw-bold">Registro de Estudiantes ITPM</h1>
+            <p class="text-muted">Laboratorio: Sección 1.3 (Formularios) y 1.4 (Utilidades)</p>
+        </header>
+
+        <main class="row justify-content-center">
+            <div class="col-md-8 bg-white p-4 shadow-sm rounded">
+
+                <form id="registroForm" class="needs-validation" novalidate>
+
+                    <div class="mb-4">
+                        <label for="nombre" class="form-label fw-bold">Nombre Completo</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" autocomplete="name"
+                            placeholder="Ej: Juan Perez" required minlength="3">
+                        <div class="invalid-feedback">Por favor, ingresa un nombre válido (mín. 3 caracteres).</div>
+                        <!-- ✅ valid-feedback: mensaje que aparece cuando el campo SÍ está correcto (borde verde) -->
+                        <div class="valid-feedback">¡Nombre correcto! ✓</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="email" class="form-label fw-bold">Correo Institucional</label>
+                        <input type="email" class="form-control" id="email" name="email" autocomplete="email"
+                            placeholder="usuario@itpm.edu.bo" required>
+                        <div class="invalid-feedback">Ingresa un formato de correo electrónico correcto.</div>
+                        <!-- ✅ valid-feedback para email -->
+                        <div class="valid-feedback">¡Correo válido! ✓</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="telefono" class="form-label fw-bold">Teléfono de Contacto</label>
+                        <input type="tel" class="form-control" id="telefono" name="telefono" autocomplete="tel"
+                            pattern="^[67][0-9]{7}$" placeholder="76543210" required>
+                        <div class="invalid-feedback">Ingresa un número válido: 8 dígitos comenzando en 6 o 7.</div>
+                        <!-- ✅ valid-feedback para teléfono -->
+                        <div class="valid-feedback">¡Teléfono correcto! ✓</div>
+                        <small class="text-muted">Formato: 8 dígitos iniciando en 6 o 7.</small>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <button class="btn btn-primary w-100 py-2" type="submit" aria-label="Enviar formulario de registro">
+                        Enviar Registro
+                    </button>
+
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        (() => {
+            'use strict'
+
+            const form = document.getElementById('registroForm')
+
+            // ================================================================
+            // VALIDACIÓN EN TIEMPO REAL (mientras el usuario escribe)
+            // ¿Cómo funciona? Escuchamos el evento "input" en cada campo.
+            // Cada vez que el usuario escribe algo, revisamos si es válido
+            // y ponemos el borde VERDE (válido) o ROJO (inválido) al instante.
+            // ================================================================
+
+            const campos = form.querySelectorAll('input')
+
+            campos.forEach(campo => {
+                // "input" se dispara cada vez que el usuario escribe una letra
+                campo.addEventListener('input', () => {
+                    validarCampo(campo)
+                })
+
+                // "blur" se dispara cuando el usuario sale del campo (hace clic afuera)
+                // Esto valida también si el usuario no escribe nada y sale del campo
+                campo.addEventListener('blur', () => {
+                    validarCampo(campo)
+                })
+            })
+
+            // ================================================================
+            // FUNCIÓN validarCampo(campo)
+            // Recibe un campo y decide si mostrar error o éxito
+            // ================================================================
+            function validarCampo(campo) {
+                if (campo.checkValidity()) {
+                    // El campo es válido: quitamos clase de error, ponemos clase de éxito
+                    campo.classList.remove('is-invalid')
+                    campo.classList.add('is-valid')      // Bootstrap VERDE
+                } else {
+                    // El campo es inválido: quitamos clase de éxito, ponemos clase de error
+                    campo.classList.remove('is-valid')
+                    campo.classList.add('is-invalid')    // Bootstrap ROJO
+                }
+            }
+
+            // ================================================================
+            // VALIDACIÓN AL ENVIAR (cuando hace clic en "Enviar Registro")
+            // Revisamos todos los campos juntos antes de enviar
+            // ================================================================
+            form.addEventListener('submit', event => {
+                event.preventDefault() // Siempre prevenimos el envío real (es laboratorio)
+
+                // Validamos todos los campos manualmente antes de enviar
+                campos.forEach(campo => validarCampo(campo))
+
+                if (!form.checkValidity()) {
+                    // El formulario tiene errores: no enviamos nada
+                    form.classList.add('was-validated')
+                } else {
+                    // Todo correcto: mostramos mensaje de éxito
+                    alert('✅ ¡Registro enviado correctamente!')
+                    form.reset()
+
+                    // Limpiamos todas las clases de validación después del reset
+                    campos.forEach(campo => {
+                        campo.classList.remove('is-valid', 'is-invalid')
+                    })
+
+                    form.classList.remove('was-validated')
+                }
+            })
+
+        })()
+    </script>
+
+</body>
+
+</html>

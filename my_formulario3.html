@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuarios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <form id="formulario">
+            <h2><i class="fas fa-user-plus"></i> Registro</h2>
+            <div class="stats">
+                <span><i class="fas fa-chart-line"></i> Registros: <strong id="count">0</strong></span>
+            </div>
+
+            <div class="campo">
+                <label><i class="fas fa-user"></i> Nombre</label>
+                <input type="text" id="nombre">
+                <small class="error"></small>
+            </div>
+
+            <div class="campo">
+                <label><i class="fas fa-envelope"></i> Correo</label>
+                <input type="email" id="correo">
+                <small class="error"></small>
+            </div>
+
+            <div class="campo">
+                <label><i class="fas fa-phone"></i> Teléfono</label>
+                <input type="text" id="telefono">
+                <small class="error"></small>
+            </div>
+
+            <button type="submit"><i class="fas fa-save"></i> Guardar</button>
+            <button type="button" class="secondary" id="limpiar"><i class="fas fa-broom"></i> Limpiar todo</button>
+            <p id="exito"><i class="fas fa-check-circle"></i> Registro guardado ✅</p>
+        </form>
+
+        <!-- TABLA -->
+        <div class="tabla">
+            <h3><i class="fas fa-list"></i> Registros</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="lista"></tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

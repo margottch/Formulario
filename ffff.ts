@@ -1,0 +1,1 @@
+let aaaa: number = 20;
